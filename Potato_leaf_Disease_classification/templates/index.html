@@ -1,0 +1,41 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <h1> Bamboo project</h1>
+        <div class="mainbody">
+            <form method='POST' enctype="multipart/form-data">
+                {{form.csrf_token}}
+                {{form.File.label}} <br>
+                {{form.File}} <br> <br>
+                {{form.submit}}
+            </form>
+    
+            {% if img_data  %}
+            <p> Uploaded Image</p>
+             <img src="data:image/jpg; base64,{{img_data}}" alt="uploaded image">
+            {% endif %}
+            <p>Label:</p>
+            {% if prediction_exists %}
+                <p>Prediction exists or not ie True/False: {{prediction_exists}}</p>
+                <p>Batch prediction: {{batch_prediction}}</p>
+                <p>Max prob: {{Max_prob}}</p>
+                <p>Predicted label/class:  <strong><i>{{predicted_class}}<i></strong></p>
+                <p>Confidence:  <strong><i>{{confidence}}<i></strong></p>
+               
+            {% else %}
+                <p> No prediction </p>
+            {% endif %}
+        </div>
+
+        
+        <script src="" async defer></script>
+    </body>
+</html>
